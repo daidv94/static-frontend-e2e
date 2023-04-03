@@ -1,0 +1,77 @@
+master_prefix  = "dev"
+aws_region     = "ap-southeast-1"
+assume_role    = "arn:aws:iam::111122223333:role/AWSAFTExecution"
+s3_bucket_name = "example"
+s3_lifecycle_rule = [
+  {
+    id      = "log-delivery"
+    enabled = true
+    filter = {
+      prefix = "*"
+    }
+    transition = [
+      {
+        days          = 30
+        storage_class = "ONEZONE_IA"
+        }, {
+        days          = 60
+        storage_class = "GLACIER"
+      }
+    ]
+    expiration = {
+      days                         = 90
+      expired_object_delete_marker = true
+    }
+  },
+  {
+    id                                     = "log-private"
+    enabled                                = true
+    abort_incomplete_multipart_upload_days = 7
+
+    noncurrent_version_transition = [
+      {
+        days          = 30
+        storage_class = "STANDARD_IA"
+      },
+      {
+        days          = 60
+        storage_class = "ONEZONE_IA"
+      },
+      {
+        days          = 90
+        storage_class = "GLACIER"
+      },
+    ]
+    noncurrent_version_expiration = {
+      days = 120
+    }
+  }
+]
+
+s3_versioning = {
+  status     = true
+  mfa_delete = false
+}
+
+s3_acl = "private"
+
+s3_cors_rule = [
+  {
+    allowed_methods = ["PUT", "POST"]
+    allowed_origins = ["https://modules.tf", "https://terraform-aws-modules.modules.tf"]
+    allowed_headers = ["*"]
+    expose_headers  = ["ETag"]
+    max_age_seconds = 3000
+    }, {
+    allowed_methods = ["PUT"]
+    allowed_origins = ["https://example.com"]
+    allowed_headers = ["*"]
+    expose_headers  = ["ETag"]
+    max_age_seconds = 3000
+  }
+]
+
+logging = {
+  target_bucket = "dev-example-111122223333-ap-southeast-1"
+  target_prefix = "log/"
+}
