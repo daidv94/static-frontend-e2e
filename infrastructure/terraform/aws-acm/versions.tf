@@ -3,9 +3,9 @@ terraform {
 
   required_providers {
     aws = {
-      source                = "hashicorp/aws"
-      version               = ">= 4.0"
-      configuration_aliases = [aws.route53]
+      source  = "hashicorp/aws"
+      version = ">= 4.0"
+      # configuration_aliases = [aws.route53]
     }
   }
 }

@@ -13,5 +13,5 @@ resource "aws_route53_record" "validation" {
   allow_overwrite = var.validation_allow_overwrite_records
 
   depends_on = [aws_acm_certificate.this]
-  provider   = aws.route53
+  # provider   = aws.route53
 }
