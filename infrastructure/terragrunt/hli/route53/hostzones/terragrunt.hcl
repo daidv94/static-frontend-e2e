@@ -33,11 +33,11 @@ inputs = merge(
   {
     create_zone = true
     zones = {
-      "onepiece.sondinh.link" = {
-        comment       = "hostzone onepiece.sondinh.link, for poc demo"
+      "onepiece.daidv.link" = {
+        comment       = "hostzone onepiece.daidv.link, for poc demo"
         force_destroy = true
         tags = {
-          Name = "onepiece.sondinh.link"
+          Name = "onepiece.daidv.link"
         }
       }
     }

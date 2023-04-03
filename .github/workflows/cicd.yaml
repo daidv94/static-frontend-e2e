@@ -57,3 +57,7 @@ jobs:
       - name: Static buid
         run: cd ./${{ matrix.dirs }} && npm run build
         shell: bash
+
+      # - name: CDN deploy
+      #   run: cd ./${{ matrix.dirs }}/deploy.sh
+      #   shell: bash
