@@ -46,7 +46,7 @@ jobs:
       - name: Install nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 16
           cache: 'npm'
           cache-dependency-path: ./${{ matrix.dirs }}/package-lock.json
 
