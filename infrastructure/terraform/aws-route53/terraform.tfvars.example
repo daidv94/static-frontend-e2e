@@ -1,0 +1,40 @@
+aws_region         = "ap-southeast-1"
+assume_role        = "arn:aws:iam::111122223333:role/AWSAFTExecution"
+
+zones = {
+  "app.terraform-aws-modules-example.com" = {
+    comment = "app.terraform-aws-modules-example.com"
+  }
+
+  "private-vpc.terraform-aws-modules-example.com" = {
+    # in case than private and public zones with the same domain name
+    domain_name = "terraform-aws-modules-example.com"
+    comment     = "private-vpc.terraform-aws-modules-example.com"
+    vpc = [
+      {
+        vpc_id = ""vpc-00aabcdf1d1d65a25"
+      }
+    ]
+  }
+}
+
+records = [
+  {
+    name = "example"
+    zone_id = "Z0012345D0ABCDFLR7OR"
+    type = "A"
+    ttl  = 3600
+    records = [
+      "10.10.10.10",
+    ]
+  },
+  {
+    name = "alb"
+    zone_name = "app.terraform-aws-modules-example.com"
+    type = "A"
+    alias = {
+      name    = "example-123456789012.elb.ap-southeast-1.amazonaws.com"
+      zone_id = "ZKVM4W9LS7TM"
+    }
+  }
+]

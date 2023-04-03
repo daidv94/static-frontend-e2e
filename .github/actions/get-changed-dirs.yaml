@@ -1,0 +1,34 @@
+name: "Get-Changed-Dirs"
+
+description: "Get all changed dirs in a PR an cteate outputs as matrix input"
+
+inputs:
+  paths:
+    description: "Paths in `glob` partern"
+    required: true
+  paths_ignore:
+    description: "Paths to ignore in `glob` partern"
+    required: false
+
+outputs:
+  matrix:
+    description: Output list of changed dirs which can be used for matrix jobs.
+    value: ${{ steps.set-matrix.outputs.matrix }}
+
+runs:
+  using: "composite"
+  steps:
+    - id: changed-dir-names
+      uses: tj-actions/changed-files@v35
+      with:
+        dir_names: "true"
+        json: "true"
+        files: ${{ inputs.paths }}
+        files_ignore: ${{ inputs.paths_ignore }}
+
+    - run: echo '${{ steps.changed-dir-names.outputs.all_changed_and_modified_files }}'
+      shell: bash
+
+    - id: set-matrix
+      run: echo "matrix={\"dirs\":${{ steps.changed-dir-names.outputs.all_changed_and_modified_files }}}" >> "$GITHUB_OUTPUT"
+      shell: bash

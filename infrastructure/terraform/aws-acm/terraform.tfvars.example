@@ -1,0 +1,14 @@
+## Verify domain on the account created ACM
+master_prefix       = "dev"
+aws_region          = "ap-southeast-1"
+assume_role         = "arn:aws:iam::111122223333:role/AWSAFTExecution"
+wait_for_validation = true
+domain = {
+  "dev.com.vn" = {
+    zone_id = "1234567"
+    subject_alternative_names = [
+      "dev.com.vn",
+      "*.dev.com.vn",
+    ]
+  }
+}
