@@ -10,7 +10,6 @@ Try It
 [ahfarmer.github.io/calculator](https://ahfarmer.github.io/calculator/)
 
 
-
 Install
 ---
 
