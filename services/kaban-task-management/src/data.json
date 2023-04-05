@@ -9,7 +9,7 @@
           "tasks": [
             {
               "title": "Build UI for onboarding flow",
-              "description": "",
+              "description": "Build UI task",
               "status": "Todo",
               "subtasks": [
                 {

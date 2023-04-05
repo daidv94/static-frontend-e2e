@@ -3,7 +3,7 @@ import React from 'react'
 export default function index() {
   return (
     <>
-    <h1 className="display-1 text-center m-4">Login</h1>
+    <h1 className="display-1 text-center m-4">Sign in</h1>
       <div className="container">
         <form className="row g-3 needs-validation" novalidate>
           <div className="mb-3">
