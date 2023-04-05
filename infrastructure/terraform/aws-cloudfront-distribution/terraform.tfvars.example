@@ -1,0 +1,8 @@
+route53_assume_role = local.common_vars.inputs.operations_account_assume_role
+aliases             = ["${local.cdn_dns}"]
+acm_certificate_arn = dependency.acm.outputs.acm_certificate_arn[local.common_vars.inputs.domain_cloud_dev]
+s3_bucket_name      = dependency.s3.outputs.s3_bucket_name
+s3_bucket_arn       = dependency.s3.outputs.s3_bucket_arn
+enable_ipv6         = true
+route53_zone_id     = local.common_vars.inputs.domain_cloud_dev_zone_id
+cdn_dns             = local.cdn_dns

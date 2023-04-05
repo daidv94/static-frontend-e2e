@@ -138,6 +138,24 @@ variable "accelerate_configuration" {
   }
 }
 
+variable "enable_static_website" {
+  description = "Whether enable static website"
+  type        = bool
+  default     = false
+}
+
+variable "website_index_suffix" {
+  description = "Home suffix of document when create s3 website"
+  type        = string
+  default     = "index.html"
+}
+
+variable "website_error_suffix" {
+  description = "Error suffix of document when create s3 website"
+  type        = string
+  default     = "index.html"
+}
+
 ################################################################################
 # Common Variables
 ################################################################################

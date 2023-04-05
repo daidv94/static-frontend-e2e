@@ -225,3 +225,16 @@ resource "aws_s3_bucket_accelerate_configuration" "accelerate_configuration" {
   bucket = aws_s3_bucket.s3_bucket[0].id
   status = var.accelerate_configuration
 }
+
+resource "aws_s3_bucket_website_configuration" "website" {
+  count  = local.create_s3 && var.enable_static_website ? 1 : 0
+  bucket = aws_s3_bucket.s3_bucket[0].id
+
+  index_document {
+    suffix = var.website_index_suffix
+  }
+
+  error_document {
+    key = var.website_error_suffix
+  }
+}
