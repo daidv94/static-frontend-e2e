@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-          cache-dependency-path: ./services/${{ inputs.service_name }} /package-lock.json
+          cache-dependency-path: ./services/${{ inputs.service_name }}/package-lock.json
 
       - name: Dependency install
         run: cd ./services/${{ inputs.service_name }} && npm install
