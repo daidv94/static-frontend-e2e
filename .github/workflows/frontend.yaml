@@ -49,5 +49,8 @@ jobs:
       
       - name: CDN deploy
         if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/heads/main')
-        run: ./services/${{ inputs.service_name }}/deploy-aws-s3-cloudfront.sh ${{ inputs.s3_bucket_name }} ${{ inputs.cdn_dns }}
+        run: |
+          aws --version
+          aws sts get-caller-identity --no-cli-pager
+          aws s3 sync build s3://${{ inputs.s3_bucket_name }}
         shell: bash
