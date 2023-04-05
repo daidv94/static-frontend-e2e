@@ -64,3 +64,9 @@ jobs:
       cdn_dns: 'ecommerce.onepiece.daidv.link'
       cdn_id: 'E2F9WFQW6S3VXV'
 ```
+
+## Clean up
+
+```bash
+terragrunt run-all destroy
+```
