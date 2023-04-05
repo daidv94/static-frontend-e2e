@@ -52,5 +52,5 @@ jobs:
         run: |
           aws --version
           aws sts get-caller-identity --no-cli-pager
-          aws s3 sync ./build s3://${{ inputs.s3_bucket_name }}
+          aws s3 sync ./services/${{ inputs.service_name }}/build s3://${{ inputs.s3_bucket_name }}
         shell: bash
