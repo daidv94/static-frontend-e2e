@@ -48,3 +48,19 @@ Similiar to other resources
 ### Workflows
 
 `Dependency install` -> `caching dependencies` -> `Build` -> `Deploy to CDN` -> `Invalidate cache on CDN`
+
+Frontend workflow is defined in [frontend.yaml](./.github/workflows/frontend.yaml) file, all frontend svc just need to call the reuseable workflow
+
+Sample
+
+```yaml
+jobs:
+  ecommerce:
+    uses: ./.github/workflows/frontend.yaml
+    secrets: inherit
+    with:
+      service_name: 'ecommerce'
+      s3_bucket_name: 'onepieces-ecommerce-742068818257-ap-southeast-1'
+      cdn_dns: 'ecommerce.onepiece.daidv.link'
+      cdn_id: 'E2F9WFQW6S3VXV'
+```
