@@ -16,6 +16,9 @@ on:
         type: string
         default: ''
 
+env:
+  CI: false
+
 jobs:
   cicd:
     runs-on: ubuntu-latest
