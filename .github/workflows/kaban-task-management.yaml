@@ -1,0 +1,32 @@
+name: kaban-task-management-CICD
+
+# Cancel previous runs that are not completed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: false
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "services/kaban-task-management/**"
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "services/kaban-task-management/**"
+
+permissions:
+  contents: read
+  actions: read
+  id-token: write
+
+jobs:
+  cicd:
+    uses: ./.github/workflows/frontend.yaml
+    secrets: inherit
+    with:
+      service_name: 'kaban-task-management'
+      s3_bucket_name: 'onepieces-kaban-task-management-742068818257-ap-southeast-1'
+      cdn_dns: 'kaban-task-management.onepiece.daidv.link'

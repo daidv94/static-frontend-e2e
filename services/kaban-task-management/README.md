@@ -61,6 +61,3 @@ Bonus:
 ### Useful resources
 - [Drag and Drop quick tutorial](https://www.youtube.com/watch?v=u65Y-vqYNAk)
 
-## Author
-
-- LinkedIn - [Hesam DearBoy](https://www.linkedin.com/in/hesam-azizpour-23259b265/)
