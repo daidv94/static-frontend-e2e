@@ -1,4 +1,4 @@
-name: Ecommerce CICD
+name: Ecommerce-CICD
 
 # Cancel previous runs that are not completed
 concurrency:

@@ -1,4 +1,4 @@
-name: frontend-cicd
+name: frontend-reuseable
 
 on:
   workflow_call:
