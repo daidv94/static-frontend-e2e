@@ -1,0 +1,43 @@
+name: frontend-cicd
+
+on:
+  workflow_call:
+    inputs:
+      service_name:
+        required: true
+        type: string
+        default: ''
+      s3_bucket_name:
+        required: true
+        type: string
+        default: ''
+      cdn_dns:
+        required: true
+        type: string
+        default: ''
+
+jobs:
+  cicd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: ./services/${{ inputs.service_name }} /package-lock.json
+
+      - name: Dependency install
+        run: cd ./services/${{ inputs.service_name }} && npm install
+        shell: bash
+
+      - name: Static buid
+        run: cd ./services/${{ inputs.service_name }} && npm run build
+        shell: bash
+
+      - name: CDN deploy
+        run: ./services/${{ inputs.service_name }}/deploy.sh ${{ inputs.s3_bucket_name }} ${{ inputs.cdn_dns }}
+        shell: bash

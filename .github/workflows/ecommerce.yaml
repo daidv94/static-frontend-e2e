@@ -1,0 +1,31 @@
+name: CI
+
+# Cancel previous runs that are not completed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: false
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "services/ecommerce/**"
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "services/ecommerce/**"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  ci:
+    uses: ./github/workflows/.github/workflows/frontend.yaml
+    secrets: inherit
+    with:
+      service_name: 'ecommerce'
+      s3_bucket_name: 'onepieces-ecommerce-742068818257-ap-southeast-1'
+      cdn_dns: 'ecommerce.onepiece.daidv.link'
