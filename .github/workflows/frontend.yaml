@@ -15,6 +15,10 @@ on:
         required: true
         type: string
         default: ''
+      cdn_id:
+        required: true
+        type: string
+        default: ''
 
 env:
   CI: false
@@ -53,4 +57,5 @@ jobs:
           aws --version
           aws sts get-caller-identity --no-cli-pager
           aws s3 sync ./services/${{ inputs.service_name }}/build s3://${{ inputs.s3_bucket_name }}
+          aws cloudfront create-invalidation --distribution-id ${{ inputs.cdn_id }} --path "/*"
         shell: bash

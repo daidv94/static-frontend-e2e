@@ -30,3 +30,4 @@ jobs:
       service_name: 'ecommerce'
       s3_bucket_name: 'onepieces-ecommerce-742068818257-ap-southeast-1'
       cdn_dns: 'ecommerce.onepiece.daidv.link'
+      cdn_id: 'E2F9WFQW6S3VXV'

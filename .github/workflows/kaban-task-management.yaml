@@ -30,3 +30,4 @@ jobs:
       service_name: 'kaban-task-management'
       s3_bucket_name: 'onepieces-kaban-task-management-742068818257-ap-southeast-1'
       cdn_dns: 'kaban-task-management.onepiece.daidv.link'
+      cdn_id: 'E1N8VCVUV661FL'
