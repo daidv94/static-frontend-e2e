@@ -18,7 +18,7 @@ on:
 
 env:
   CI: false
-
+  AWS_REGION: ap-southeast-1
 jobs:
   cicd:
     runs-on: ubuntu-latest
@@ -41,6 +41,13 @@ jobs:
         run: cd ./services/${{ inputs.service_name }} && npm run build
         shell: bash
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::742068818257:role/github-oidc
+          aws-region: ${{ env.AWS_REGION }}
+      
       - name: CDN deploy
-        run: ./services/${{ inputs.service_name }}/deploy.sh ${{ inputs.s3_bucket_name }} ${{ inputs.cdn_dns }}
+        if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/heads/main')
+        run: ./services/${{ inputs.service_name }}/deploy-aws-s3-cloudfront.sh ${{ inputs.s3_bucket_name }} ${{ inputs.cdn_dns }}
         shell: bash
