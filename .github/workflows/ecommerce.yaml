@@ -23,7 +23,7 @@ permissions:
 
 jobs:
   ci:
-    uses: ./github/workflows/.github/workflows/frontend.yaml
+    uses: ./.github/workflows/.github/workflows/frontend.yaml
     secrets: inherit
     with:
       service_name: 'ecommerce'
