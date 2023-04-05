@@ -40,3 +40,5 @@
 
 - Register Page:
 ![image](https://user-images.githubusercontent.com/118603448/228481028-995478d3-c12b-48e7-89a4-8e286d8ea97d.png)
+
+## Author
