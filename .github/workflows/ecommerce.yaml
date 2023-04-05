@@ -22,7 +22,7 @@ permissions:
   actions: read
 
 jobs:
-  ci:
+  cicd:
     uses: ./.github/workflows/frontend.yaml
     secrets: inherit
     with:
