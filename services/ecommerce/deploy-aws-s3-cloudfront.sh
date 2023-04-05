@@ -27,4 +27,4 @@ DNS_CDN=$2
 
 # Sync build to S3
 
-aws s3 sync build s3://S3_BUCKET_NAME
+aws s3 sync $CURRENT_DIR/build s3://S3_BUCKET_NAME
